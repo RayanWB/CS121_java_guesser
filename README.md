@@ -11,40 +11,48 @@ import java.util*
 define public Guesser class
     define public Guesser constructor
         ask user to choose a game to play using menu method
-// human guesser
-        generate a random number correct of integer value 1-100
-        while (keepGoing)
-            ask the user for a guess between 1-100, present num
-            if guess is within boundaries
-                if guess == correct
-                    congratulate the user
-                    end the game
-                if guess > correct
-                    respond: guess is too high
-                if guess < correct
-                    respond: guess is too low
+        if option "1"
+            run userGuess method
+        if option "2"
+            run comGuess method
+
+        define public void userGuess
+            generate a random number correct of integer value 1-100
+            while (keepGoing)
+                ask the user for a guess between 1-100, present num
+                if guess is within boundaries
+                    if guess == correct
+                        congratulate the user
+                        end the game
+                    if guess > correct
+                        respond: guess is too high
+                    if guess < correct
+                        respond: guess is too low
+                    if else
+                        ask for new response
                 if else
                     ask for new response
-            if else
-                ask for new response
-// computer guesser
-            define integer comGuess = 50
-            define integer numGuesses = 1
-            while (keepGoing)
-                numGuesses = numGuesses++
-                present comGuess, present numGuesses
-                ask whether guess is high, low, or correct
-                if guess is high
-                    comGuess = comGuess + (100 / (2^numGuesses))
-                    make sure comGuess is an integer
-                if guess is low
-                    comGuess = comGuess - (100 / (2^numGuesses))
-                    make sure comGuess is an integer
-                if guess is correct
-                
+
+            define public void comGuess
+                define integer comGuess = 50
+                define integer numGuesses = 1
+                while (keepGoing)
+                    present comGuess, present numGuesses
+                    ask whether guess is high, low, or correct
+                    numGuesses = numGuesses++
+                    if guess is high
+                        comGuess = comGuess + (100 / (2^numGuesses))
+                        make sure comGuess is an integer
+                    if guess is low
+                        comGuess = comGuess - (100 / (2^numGuesses))
+                        make sure comGuess is an integer
+                    if guess is correct
+                        celebrate, end game
             
 
     define public string menu method
+        ask for user input, integers either 0, 1, or 2
+        return user's input
 
     define public static main method
         create an instance of Guesser on the heap
